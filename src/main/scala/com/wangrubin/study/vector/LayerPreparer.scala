@@ -5,7 +5,7 @@ import com.wangrubin.study.vector.crs.VectorCRS
 import com.wangrubin.study.vector.feature.WrapFeature
 import org.apache.spark.rdd.RDD
 
-private[vector] class LayerPreparer(crs: VectorCRS, persiter: TilePersister) extends Serializable {
+private[vector] class LayerPreparer(crs: VectorCRS, persister: TilePersister) extends Serializable {
   def combine(layers: Array[(LayerInfo, RDD[WrapFeature])]): (RDD[WrapFeature], TileGenerator) = {
     val layerInfos = new Array[LayerInfo](layers.length)
     //Bind layer id
@@ -16,7 +16,7 @@ private[vector] class LayerPreparer(crs: VectorCRS, persiter: TilePersister) ext
         (layerId, layerRdd)
     }
     val combineLayer = projectAndCombine(layerWithId)
-    val tileGenerator = new TileGenerator(layerInfos, persiter)
+    val tileGenerator = new TileGenerator(layerInfos, persister)
     (combineLayer, tileGenerator)
   }
 

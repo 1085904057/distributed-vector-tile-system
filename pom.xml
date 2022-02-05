@@ -63,6 +63,13 @@
         </dependency>
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>ECC</id>
+            <url>https://maven.ecc.no/releases</url>
+        </repository>
+    </repositories>
+
     <build>
         <plugins>
             <!--compile scala-->
